@@ -1,0 +1,41 @@
+﻿<Window x:Class="WpfApp2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Geometry Figures" Height="800" Width="800"
+        DataContext="{StaticResource MainViewModel}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10">
+            <ComboBox ItemsSource="{Binding Figures}" SelectedItem="{Binding SelectedFigure}" Margin="0 0 10 0" Width="150"/>
+            <Button Content="Draw" Command="{Binding DrawCommand}" Width="100"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="10">
+            <TextBlock Text="X coord:" />
+            <TextBox Text="{Binding XCoordinate}" Margin="0 0 10 0" Width="100"/>
+            <TextBlock Text="Y coord:" />
+            <TextBox Text="{Binding YCoordinate}" Width="100"/>
+            
+            <TextBlock Text="Для эллипса сначала указываем две координаты большой диагонали, затем две координаты малой диагонали"
+                       Margin="10 0 0 0" Width="500" TextWrapping="Wrap" />
+        </StackPanel>
+
+        <Canvas Grid.Row="2" Background="White" Margin="10" Width="600" Height="400">
+            <!-- Отображение системы координат -->
+            <Line X1="0" Y1="200" X2="600" Y2="200" Stroke="Black"/>
+            <Line X1="300" Y1="0" X2="300" Y2="400" Stroke="Black"/>
+            <TextBlock Text="0" Canvas.Left="290" Canvas.Top="200"/>
+            <TextBlock Text="X" Canvas.Left="590" Canvas.Top="200"/>
+            <TextBlock Text="Y" Canvas.Left="290" Canvas.Top="5"/>
+        </Canvas>
+    </Grid>
+</Window>
